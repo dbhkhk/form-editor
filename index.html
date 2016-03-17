@@ -1,0 +1,72 @@
+<!doctype html>
+<html ng-app="demoApp">
+	<head>
+		<title>PD Form Builder</title>
+		<meta charset="utf-8">
+	</head>
+	<body>
+		<section ng-controller="MainController">
+			<div class="form-editor">
+				<ul>
+					<li ng-repeat="question in form.questions">
+						<ul>
+							<li>
+								<label>问题</label>
+								<input ng-model="question.title">
+							</li>
+							<li>
+								<label>是否必填</label>
+								<select name="required" ng-model="question.required">
+  									<option value="true">Yes</option>
+								    <option value="false">No</option>
+								</select>
+							</li>
+							<li>
+								<label>问题类型</label>
+								<select name="type" ng-model="question.type">
+  									<option value="short text">简短问答</option>
+								    <option value="long text">段落问答</option>
+								    <option value="radio">单选</option>
+								    <option value="multiple">多选</option>
+								</select>
+							</li>
+							<ul>
+								<li ng-repeat="option in question.options">
+									<label>选项内容</label>
+									<input ng-model="option">
+								</li>
+							</ul>							
+						</ul>
+						<hr>
+					</li>
+				</ul>
+			</div>
+			<div class="splitter"></div>
+			<div class="form-display">
+				<form>
+					<h3>{{form.title}}</h3>
+					<p ng-repeat="description in form.description">{{description}}</p>
+					<br>
+					<div ng-repeat="question in form.questions">
+						<label>{{question.id}}. {{question.title}}<span ng-show="question.required === 'true'">*</span></label>
+						<br>
+						<input ng-show="question.type === 'short text'">
+						<textarea ng-show="question.type === 'long text'"></textarea>
+						<label ng-show="question.type === 'radio'" ng-repeat="option in question.options">
+							{{option}}<input type="radio" name="{{question.title}}" ng-value="option">
+						</label>
+						<label ng-show="question.type === 'multiple'" ng-repeat="option in question.options">
+							{{option}}<input type="checkbox" name="{{question.title}}" ng-value="option">
+						</label>
+						<br><br>
+					</div>
+				</form>
+			</div>
+		</section>
+		<script src="jquery-1.11.3.min.js"></script>
+		<script src="angular.min.js"></script>
+		<script src="jsoneditor.min.js"></script>
+		<script src="angular-json-editor.min.js"></script>	
+		<script src="app.js"></script>			
+	</body>
+</html>
