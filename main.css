@@ -13,3 +13,18 @@
 .required {
 	color: red;
 }
+
+.convert {
+	width: 45%;
+	text-align: center;
+}
+
+button {
+	font-size: 20px;
+	cursor: pointer;
+	margin-top: 8px;
+}
+
+button:active {
+  transform: translateY(4px);
+}

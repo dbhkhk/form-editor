@@ -31,6 +31,11 @@ demoApp.controller('MainController', function($scope) {
 	};
 
 	$scope.convert = function() {
-		$scope.form = JSON.parse(editor.getValue());
+		
+		try{
+	        $scope.form = JSON.parse(editor.getValue());
+	    }catch(e){
+	        alert('表格编辑格式有误（注意：需要使用英文标点。错误位置请参考编辑窗口左侧标示）');
+	    }
 	};
 });
