@@ -3,52 +3,51 @@
 	<head>
 		<title>PD Form Builder</title>
 		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="main.css">
 	</head>
 	<body>
 		<section ng-controller="MainController">
 			<div class="form-editor">
-				<ul>
-					<li ng-repeat="question in form.questions">
-						<ul>
-							<li>
-								<label>问题</label>
-								<input ng-model="question.title">
-							</li>
-							<li>
-								<label>是否必填</label>
-								<select name="required" ng-model="question.required">
-  									<option value="true">Yes</option>
-								    <option value="false">No</option>
-								</select>
-							</li>
-							<li>
-								<label>问题类型</label>
-								<select name="type" ng-model="question.type">
-  									<option value="short text">简短问答</option>
-								    <option value="long text">段落问答</option>
-								    <option value="radio">单选</option>
-								    <option value="multiple">多选</option>
-								</select>
-							</li>
-							<ul>
-								<li ng-repeat="option in question.options">
-									<label>选项内容</label>
-									<input ng-model="option">
-								</li>
-							</ul>							
-						</ul>
-						<hr>
-					</li>
-				</ul>
+				<div id="editor">{
+	"id": 0,
+	"title": "出国动机",
+	"description": [
+		"－请认真回答以下问题，如有需要，可以花几天时间做更多的调研，从而最大化与导师咨询沟通的效果",
+		"－你的回答将会发送给你的导师，以帮助导师更好的准备和你的咨询",
+		"－你的答案将会帮助我们了解您的申请准备情况，从而有针对性的帮你设计服务流程（我们的服务流程是根据每个学生的情况个性化设计的）"
+	],
+	"questions": [{
+		"id": 1,
+		"title": "我非常清楚我出国留学的目的",
+		"required": "true",
+		"type": "radio",
+		"options": ["是", "不是"]
+	}, {
+		"id": 2,
+		"title": "申请动机",
+		"required": "true",
+		"type": "long text",
+		"options": []
+	}, {
+		"id": 3,
+		"title": "问题3",
+		"required": "true",
+		"type": "multiple",
+		"options": ["选项1", "选项2", "选项3"]
+	}]
+}
+				</div>
 			</div>
-			<div class="splitter"></div>
+			<div class="convert">
+				<button ng-click="convert()">Convert</button>
+			</div>
 			<div class="form-display">
 				<form>
 					<h3>{{form.title}}</h3>
 					<p ng-repeat="description in form.description">{{description}}</p>
 					<br>
 					<div ng-repeat="question in form.questions">
-						<label>{{question.id}}. {{question.title}}<span ng-show="question.required === 'true'">*</span></label>
+						<label>{{question.id}}. {{question.title}}<span class="required" ng-show="question.required === 'true'">*</span></label>
 						<br>
 						<input ng-show="question.type === 'short text'">
 						<textarea ng-show="question.type === 'long text'"></textarea>
@@ -65,8 +64,13 @@
 		</section>
 		<script src="jquery-1.11.3.min.js"></script>
 		<script src="angular.min.js"></script>
-		<script src="jsoneditor.min.js"></script>
-		<script src="angular-json-editor.min.js"></script>	
-		<script src="app.js"></script>			
+		<script src="src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+		    var editor = ace.edit("editor");
+		    editor.setTheme("ace/theme/monokai");
+		    editor.getSession().setMode("ace/mode/json");
+		    editor.getSession().setUseWrapMode(true);
+		</script>
+		<script src="app.js"></script>
 	</body>
 </html>
