@@ -52,10 +52,10 @@
 						<input ng-show="question.type === 'short text'">
 						<textarea ng-show="question.type === 'long text'"></textarea>
 						<label ng-show="question.type === 'radio'" ng-repeat="option in question.options">
-							{{option}}<input type="radio" name="{{question.title}}" ng-value="option">
+							<input type="radio" name="{{question.title}}" ng-value="option">{{option}}
 						</label>
 						<label ng-show="question.type === 'multiple'" ng-repeat="option in question.options">
-							{{option}}<input type="checkbox" name="{{question.title}}" ng-value="option">
+							<input type="checkbox" name="{{question.title}}" ng-value="option">{{option}}
 						</label>
 						<br><br>
 					</div>
