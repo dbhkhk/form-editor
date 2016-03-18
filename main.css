@@ -28,3 +28,7 @@ button {
 button:active {
   transform: translateY(4px);
 }
+
+.ace_editor  {
+  height : 600px;
+}
