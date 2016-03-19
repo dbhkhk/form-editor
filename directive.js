@@ -33,7 +33,7 @@ demoApp.directive('formBuilder', function() {
 			}]
 		};
 
-		scope.formString = JSON.stringify(scope.form, null, '\t');
+		scope.formString = JSON.stringify(scope.form, null, 2);
 
 	    scope.convert = function() {
 			try{
