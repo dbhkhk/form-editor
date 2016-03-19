@@ -4,11 +4,6 @@ demoApp.directive('formBuilder', function() {
     scope: {},
     templateUrl: 'directive.html',
     link: function(scope, element, attrs) {
-    	var editor = ace.edit("editor");
-	    editor.setTheme("ace/theme/monokai");
-	    editor.getSession().setMode("ace/mode/json");
-	    editor.getSession().setUseWrapMode(true);
-
 	    scope.form = {
 			"id": 0,
 			"title": "出国动机",
@@ -38,9 +33,11 @@ demoApp.directive('formBuilder', function() {
 			}]
 		};
 
+		scope.formString = JSON.stringify(scope.form, null, '\t');
+
 	    scope.convert = function() {
 			try{
-		        scope.form = JSON.parse(editor.getValue());
+		        scope.form = JSON.parse(scope.formString);
 		    }catch(e){
 		        alert('表格编辑格式有误（注意：需要使用英文标点。错误位置请参考编辑窗口左侧标示）');
 		    }
