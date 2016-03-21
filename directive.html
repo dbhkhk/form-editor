@@ -15,6 +15,7 @@
 				<label>{{question.id}}. {{question.title}}<span class="required" ng-show="question.required === 'true'">*</span></label>
 				<br>
 				<input ng-show="question.type === 'short text'">
+				<p ng-show="question.description">{{question.description}}</p>
 				<textarea ng-show="question.type === 'long text'"></textarea>
 				<label ng-show="question.type === 'radio'" ng-repeat="option in question.options">
 					<input type="radio" name="{{question.title}}" ng-value="option">{{option}}

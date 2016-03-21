@@ -15,18 +15,21 @@ demoApp.directive('formBuilder', function() {
 			"questions": [{
 				"id": 1,
 				"title": "我非常清楚我出国留学的目的",
+				"description": "如果是：你为什么想出国留学？（留美？出国深造再回国工作？转专业／行业？）你将来想做什么？出国留学可以如何帮助到你？如果不是：建议和同学，朋友，家人甚至自己深聊一下出国动机。",
 				"required": "true",
 				"type": "radio",
 				"options": ["是", "不是"]
 			}, {
 				"id": 2,
 				"title": "申请动机",
+				"description": "",
 				"required": "true",
 				"type": "long text",
 				"options": []
 			}, {
 				"id": 3,
 				"title": "问题3",
+				"description": "",
 				"required": "true",
 				"type": "multiple",
 				"options": ["选项1", "选项2", "选项3"]
